@@ -1,0 +1,6 @@
+## Interface: 110105
+## Title: Crest Tracker
+## Notes: Shows crest requirements based on equipped gear
+## Author: Ryan Flores
+## Version: 0.1
+CrestTracker.lua
