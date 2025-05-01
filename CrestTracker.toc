@@ -3,4 +3,11 @@
 ## Notes: Shows crest requirements based on equipped gear
 ## Author: Ryan Flores
 ## Version: 0.1
+
+CrestData.lua
+TooltipUtils.lua
+UISetup.lua
+CrestLogic.lua
+EventHandler.lua
+TabHandler.lua
 CrestTracker.lua
