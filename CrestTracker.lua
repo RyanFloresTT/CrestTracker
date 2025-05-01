@@ -187,6 +187,10 @@ for i, crest in ipairs(crestTypes) do
     
         GameTooltip:Show()
     end)
+
+    frame:SetScript("OnLeave", function()
+        GameTooltip:Hide()
+    end)
 end
 
 local function UpdateCrestCounts()  
