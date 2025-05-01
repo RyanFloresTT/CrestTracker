@@ -1,5 +1,7 @@
 # 🏆 CrestTracker
 
+![CrestTracker Screenshot](./assets/cresttracker.png)
+
 **CrestTracker** is a World of Warcraft addon that adds a new tab to your Character Sheet showing how many crests you still need to upgrade your current gear.
 
 It tracks the four new crest types introduced in *The War Within*. Currently supporting Season 2 Crests:

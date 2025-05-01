@@ -311,9 +311,10 @@ Tab:SetScript("OnClick", function()
     end
 
     UpdateCrestCounts()
-    Panel:Show()
+    Panel:Show()    
     CharacterStatsPane:Hide()
     CharacterFrameTitleText:SetText(TabName)
+    PanelTemplates_SetTab(CharacterFrame, TabID)
 end)
 
 local f = CreateFrame("Frame")
