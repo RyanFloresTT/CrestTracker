@@ -21,42 +21,62 @@ local trackMax = {
 
 local ACTIVITY_REWARDS = {
     ["Weathered Undermine Crest"] = {
-        { source = "Heroic Dungeon Boss", reward = 1, text = "Kill %d more Heroic bosses" },
-        { source = "Timewalking Dungeon", reward = 2, text = "Complete %d more Timewalking" },
-        { source = "LFR Wing", reward = 3, text = "Complete %d more LFR wings" }
+        {
+            source = "Delves", 
+            tiers = {
+                { range = "1-5", reward = 10 },
+            },
+            text = "Complete %d more tier +%s delves"
+        },
+        { source = "Heroic Dungeon Boss", reward = 1, text = "Kill %d more Heroic Dungeon Bosses" },
+        { source = "LFR", reward = 15, text = "Complete %d more LFR wings" }
     },
     ["Carved Undermine Crest"] = {
-        { source = "M+2-4", reward = 5, text = "Time %d more +2-4 keys" },
-        { source = "M+5-7", reward = 8, text = "Time %d more +5-7 keys" },
-        { source = "Normal Raid Boss", reward = 2, text = "Kill %d more Normal bosses" }
+        {
+            source = "Delves", 
+            tiers = {
+                { range = "6-7", reward = 10 },
+            },
+            text = "Complete %d more tier +%s delves"
+        },
+        { source = "M 0", reward = 15, text = "Time %d more Mythic 0 Dungeonss" },
+        { source = "Normal Raid Boss", reward = 15, text = "Kill %d more Normal bosses" }
     },
     ["Runed Undermine Crest"] = {
         {
+            source = "Delves", 
+            tiers = {
+                { range = "8-11", reward = 10 },
+            },
+            text = "Complete %d more tier +%s delves"
+        },
+        {
             source = "Mythic+", 
             tiers = {
-                { range = "2-4", reward = 8 },
-                { range = "5-9", reward = 12 },
-                { range = "10-14", reward = 18 },
-                { range = "15-17", reward = 25 }
+                { range = "2", reward = 10 },
+                { range = "3", reward = 12 },
+                { range = "4", reward = 14 },
+                { range = "5", reward = 16 },
+                { range = "6", reward = 18 }
             },
             text = "Time %d more +%s keys"
         },
-        { source = "Heroic Raid Boss", reward = 4, text = "Kill %d more Heroic bosses" },
-        { source = "Mythic Raid Boss", reward = 6, text = "Kill %d more Mythic bosses" }
+        { source = "Heroic Raid Boss", reward = 15, text = "Kill %d more Heroic bosses" },
     },
     ["Gilded Undermine Crest"] = {
         {
             source = "Mythic+", 
             tiers = {
-                { range = "11-15", reward = 8 },
-                { range = "16-19", reward = 15 },
-                { range = "20-23", reward = 25 },
-                { range = "24+", reward = 40 }
+                { range = "7", reward = 10 },
+                { range = "8", reward = 12 },
+                { range = "9", reward = 14 },
+                { range = "10", reward = 16 },
+                { range = "11", reward = 18 },
+                { range = "12", reward = 20 },
             },
             text = "Time %d more +%s keys"
         },
-        { source = "Mythic Raid Boss", reward = 10, text = "Kill %d more Mythic bosses" },
-        { source = "Weekly Vault", reward = 15, text = "Wait %d more weeks" }
+        { source = "Mythic Raid Boss", reward = 15, text = "Kill %d more Mythic bosses" },
     }
 }
 
@@ -68,23 +88,25 @@ local itemNeeds = {
 }
 
 local function GenerateTooltip(crestName, deficit)
-    GameTooltip:AddLine("Earn from:", 0.7, 0.7, 0.7)
+    GameTooltip:AddLine("Earn from:", 1, 1, 1)
 
     for _, sourceInfo in ipairs(ACTIVITY_REWARDS[crestName]) do
         if sourceInfo.tiers then
             for _, tier in ipairs(sourceInfo.tiers) do
                 local activitiesNeeded = math.ceil(deficit / tier.reward)
                 local displayText = string.format(sourceInfo.text, activitiesNeeded, tier.range)
-                GameTooltip:AddLine(displayText, 0.5, 1, 0.5)
-                GameTooltip:AddLine(string.format("  (+%s: %d crests each)", tier.range, tier.reward), 0.7, 0.7, 0.7)
+                GameTooltip:AddLine("• "..displayText, 0.1, 0.9, 0.1)
+                GameTooltip:AddLine(string.format("    (+%s: %d each)", tier.range, tier.reward), 0.7, 0.7, 0.7)
             end
         else
             local activitiesNeeded = math.ceil(deficit / sourceInfo.reward)
-            GameTooltip:AddLine(string.format(sourceInfo.text, activitiesNeeded), 0.5, 1, 0.5)
-            GameTooltip:AddLine(string.format("  (%s: %d crests each)", sourceInfo.source, sourceInfo.reward), 0.7, 0.7, 0.7)
+            GameTooltip:AddLine("• "..string.format(sourceInfo.text, activitiesNeeded), 0.1, 0.9, 0.1)
+            GameTooltip:AddLine(string.format("    (%s: %d each)", sourceInfo.source, sourceInfo.reward), 0.7, 0.7, 0.7)
         end
+        GameTooltip:AddLine(" ")
     end
 end
+
 
 local crestFrames = {}
 
@@ -124,6 +146,7 @@ for i, crest in ipairs(crestTypes) do
     icon:SetSize(32, 32)
     icon:SetPoint("LEFT", 10, 0)
     icon:SetTexture(crest.icon)
+    frame.iconTexture = icon 
 
     local nameLabel = frame:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     nameLabel:SetPoint("LEFT", icon, "RIGHT", 10, 0)
@@ -140,21 +163,21 @@ for i, crest in ipairs(crestTypes) do
 
     frame:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:AddLine(crest.name)
+        GameTooltip:AddLine("|T"..crest.icon..":16|t "..crest.name, 1, 0.82, 0)
         GameTooltip:AddLine(" ")
-        
+    
         local needed = itemNeeds[crest.name] or 0
         local owned = crest.quantity or 0
         local deficit = needed - owned
-        
+    
         if deficit > 0 then
-            GameTooltip:AddLine(string.format("Need %d more crests", deficit), 1, 1, 1)
-            GameTooltip:AddLine(" ", 1, 1, 1)
+            GameTooltip:AddLine(string.format("Need %d more crests", deficit), 1, 0.4, 0.4)
+            GameTooltip:AddLine(" ")
             GenerateTooltip(crest.name, deficit)
         else
             GameTooltip:AddLine("You have enough crests!", 0, 1, 0)
         end
-        
+    
         GameTooltip:Show()
     end)
 end
