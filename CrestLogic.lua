@@ -1,12 +1,13 @@
 CrestLogic = CrestLogic or {}
 
+
 function CrestLogic.UpdateCrestCounts(crestTypes, crestMax, trackMax, itemNeeds, crestFrames, Panel)
     for key in pairs(itemNeeds) do
         itemNeeds[key] = 0
     end
-
-    if not Panel then return end    
-
+    
+    if not Panel then return end
+    
     for slot = 1, 17 do
         local itemLink = GetInventoryItemLink("player", slot)
         if itemLink then
@@ -34,7 +35,10 @@ function CrestLogic.UpdateCrestCounts(crestTypes, crestMax, trackMax, itemNeeds,
                     if itemTrack == "Veteran" then
                         if itemLevel < crestMax["Weathered"] then
                             local upgradesNeeded = math.ceil((crestMax["Weathered"] - itemLevel) / 3)
-                            itemNeeds["Weathered Undermine Crest"] = itemNeeds["Weathered Undermine Crest"] + (15 * upgradesNeeded)
+                            local deficit = 15 * upgradesNeeded
+                            if deficit > 0 then
+                                itemNeeds["Weathered Undermine Crest"] = itemNeeds["Weathered Undermine Crest"] + deficit
+                            end
                             itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + 60
                         else
                             if itemLevel < trackMax["Veteran"] then
@@ -42,14 +46,20 @@ function CrestLogic.UpdateCrestCounts(crestTypes, crestMax, trackMax, itemNeeds,
                                     itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + 60
                                 else
                                     local upgradesNeeded = math.ceil((trackMax["Veteran"] - itemLevel) / 3)
-                                    itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + (15 * upgradesNeeded)
+                                    local deficit = 15 * upgradesNeeded
+                                    if deficit > 0 then
+                                        itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + deficit
+                                    end
                                 end
                             end
                         end
                     elseif itemTrack == "Champion" then
                         if itemLevel < crestMax["Carved"] then
                             local upgradesNeeded = math.ceil((crestMax["Carved"] - itemLevel) / 3)
-                            itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + (15 * upgradesNeeded)
+                            local deficit = 15 * upgradesNeeded
+                            if deficit > 0 then
+                                itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + deficit
+                            end
                             itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + 60
                         else
                             if itemLevel < trackMax["Champion"] then
@@ -57,29 +67,41 @@ function CrestLogic.UpdateCrestCounts(crestTypes, crestMax, trackMax, itemNeeds,
                                     itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + 60
                                 else
                                     local upgradesNeeded = math.ceil((trackMax["Champion"] - itemLevel) / 3)
-                                    itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + (15 * upgradesNeeded)
+                                    local deficit = 15 * upgradesNeeded
+                                    if deficit > 0 then
+                                        itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + deficit
+                                    end
                                 end
                             end
                         end
                     elseif itemTrack == "Hero" then
                         if itemLevel < crestMax["Runed"] then
                             local upgradesNeeded = math.ceil((crestMax["Runed"] - itemLevel) / 3)
-                            itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + (15 * upgradesNeeded)
+                            local deficit = 15 * upgradesNeeded
+                            if deficit > 0 then
+                                itemNeeds["Runed Undermine Crest"] = itemNeeds["Runed Undermine Crest"] + deficit
+                            end
                             itemNeeds["Gilded Undermine Crest"] = itemNeeds["Gilded Undermine Crest"] + 30
                         else
                             if itemLevel < trackMax["Hero"] then
                                 if itemLevel == crestMax["Runed"] then
-                                    itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + 30
+                                    itemNeeds["Gilded Undermine Crest"] = itemNeeds["Gilded Undermine Crest"] + 30
                                 else
                                     local upgradesNeeded = math.ceil((trackMax["Hero"] - itemLevel) / 3)
-                                    itemNeeds["Carved Undermine Crest"] = itemNeeds["Carved Undermine Crest"] + (15 * upgradesNeeded)
+                                    local deficit = 15 * upgradesNeeded
+                                    if deficit > 0 then
+                                        itemNeeds["Gilded Undermine Crest"] = itemNeeds["Gilded Undermine Crest"] + deficit
+                                    end
                                 end
                             end
                         end
                     elseif itemTrack == "Myth" then
                         if itemLevel < 678 then
                             local upgradesNeeded = math.ceil((678 - itemLevel) / 3)
-                            itemNeeds["Gilded Undermine Crest"] = itemNeeds["Gilded Undermine Crest"] + (15 * upgradesNeeded)
+                            local deficit = 15 * upgradesNeeded
+                            if deficit > 0 then
+                                itemNeeds["Gilded Undermine Crest"] = itemNeeds["Gilded Undermine Crest"] + deficit
+                            end
                         end
                     end
                 end
