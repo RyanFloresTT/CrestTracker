@@ -11,15 +11,15 @@ CrestData.crestMax = {
     ["Weathered"] = 632,
     ["Carved"] = 645,
     ["Runed"] = 658,
-    ["Gilded"] = 678,
+    ["Gilded"] = 684,
 }
 
 
 CrestData.trackMax = {
     ["Veteran"] = 645,
     ["Champion"] = 658,
-    ["Hero"] = 665,
-    ["Myth"] = 678,
+    ["Hero"] = 671,
+    ["Myth"] = 684,
 }
 
 CrestData.ACTIVITY_REWARDS = {
