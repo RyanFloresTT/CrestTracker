@@ -8,7 +8,7 @@ function CreateSettingsPanel(parent)
         showDelves = true,
         showDungeon = true,
         showRaid = true,
-        progressBars = true,
+        -- progressBars = true, --
     }
 
     -- UI creation below
@@ -54,10 +54,10 @@ function CreateSettingsPanel(parent)
     showRaidCheck.Text:SetText("Show Raids")
     bindCheckbox(showRaidCheck, "showRaid")
 
-    local progressBarsCheck = CreateFrame("CheckButton", nil, overlay, "ChatConfigCheckButtonTemplate")
-    progressBarsCheck:SetPoint("TOPLEFT", showRaidCheck, "BOTTOMLEFT", 0, -16)
-    progressBarsCheck.Text:SetText("Show Progress Bars")
-    bindCheckbox(progressBarsCheck, "progressBars")
+    -- local progressBarsCheck = CreateFrame("CheckButton", nil, overlay, "ChatConfigCheckButtonTemplate")
+    -- progressBarsCheck:SetPoint("TOPLEFT", showRaidCheck, "BOTTOMLEFT", 0, -16)
+    -- progressBarsCheck.Text:SetText("Show Progress Bars")
+    -- bindCheckbox(progressBarsCheck, "progressBars")
 
     local closeBtn = CreateFrame("Button", nil, overlay, "UIPanelCloseButton")
     closeBtn:SetPoint("TOPRIGHT", overlay, "TOPRIGHT", -8, -8)
@@ -220,6 +220,7 @@ function UISetup.InitializeUI(crestTypes, itemNeeds, GenerateTooltip, settingsOv
 
     -- Slash command to toggle CrestTracker frame
     SLASH_CRESTTRACKER1 = "/cresttracker"
+    SLASH_CRESTTRACKER2 = "/ct"
     SlashCmdList["CRESTTRACKER"] = function()
         if Panel:IsShown() then
             Panel:Hide()
@@ -227,6 +228,38 @@ function UISetup.InitializeUI(crestTypes, itemNeeds, GenerateTooltip, settingsOv
             Panel:Show()
         end
     end
+
+    local LDB = LibStub("LibDataBroker-1.1")
+local icon = LibStub("LibDBIcon-1.0")
+
+local dataObject = LDB:NewDataObject("CrestTracker", {
+    type = "launcher",
+    text = "CrestTracker",
+    icon = "Interface\\AddOns\\CrestTracker\\Assets\\Logo\\CrestTracker.blp",
+    OnClick = function(self, button)
+        if button == "LeftButton" then
+            if Panel:IsShown() then
+                Panel:Hide()
+            else
+                Panel:Show()
+            end
+        elseif button == "RightButton" then
+            -- Optional: Add settings panel toggle
+        end
+    end,
+    OnTooltipShow = function(tooltip)
+        tooltip:AddLine("CrestTracker")
+        tooltip:AddLine("Left-click to open panel")
+        tooltip:AddLine("Right-click for settings (if implemented)")
+    end,
+})
+
+local f = CreateFrame("Frame")
+f:RegisterEvent("PLAYER_LOGIN")
+f:SetScript("OnEvent", function()
+    CrestTrackerDB = CrestTrackerDB or {}
+    icon:Register("CrestTracker", dataObject, CrestTrackerDB)
+end)
 
     return crestFrames, Panel
 end

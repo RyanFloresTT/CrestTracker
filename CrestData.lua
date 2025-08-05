@@ -4,9 +4,9 @@ CrestData.seasonName = L["CREST_NAME"]
 
 CrestData.crestTypes = {
     { name = L["WEATHERED_CREST"] or ("Weathered " .. CrestData.seasonName .. " Crest"), icon = "", id = 3285, quantity = 0},
-    { name = L["CARVED_CREST"] or ("Carved " .. CrestData.seasonName .. " Crest"), icon = "", id = 3286, quantity = 0},
-    { name = L["RUNED_CREST"] or ("Runed " .. CrestData.seasonName .. " Crest"), icon = "", id = 3287, quantity = 0},
-    { name = L["GILDED_CREST"] or ("Gilded " .. CrestData.seasonName .. " Crest"), icon = "", id = 3288, quantity = 0}
+    { name = L["CARVED_CREST"] or ("Carved " .. CrestData.seasonName .. " Crest"), icon = "", id = 3287, quantity = 0},
+    { name = L["RUNED_CREST"] or ("Runed " .. CrestData.seasonName .. " Crest"), icon = "", id = 3289, quantity = 0},
+    { name = L["GILDED_CREST"] or ("Gilded " .. CrestData.seasonName .. " Crest"), icon = "", id = 3290, quantity = 0}
 }
 
 CrestData.crestMax = {

@@ -1,8 +1,11 @@
 ## Interface: 110200
-## Title: Crest Tracker
+## Title: CrestTracker - |cFF7FDBFFTrustyTea|r
 ## Notes: Shows crest requirements based on equipped gear
 ## Author: Ryan Flores
-## Version: 0.1
+## Version: 11.2.0
+## IconTexture: Interface\AddOns\CrestTracker\Assets\Logo\CrestTracker
+
+## SavedVariables: CrestTrackerSavedConfig
 
 Localization.lua
 UISetup.lua
@@ -12,5 +15,3 @@ TabHandler.lua
 CrestTracker.lua
 CrestData.lua
 TooltipUtils.lua
-
-## SavedVariables: CrestTrackerSavedConfig
