@@ -2,13 +2,13 @@
 
 ![CrestTracker Screenshot](./assets/cresttracker.png)
 
-**CrestTracker** is a World of Warcraft addon that adds a new tab to your Character Sheet showing how many crests you still need to upgrade your current gear.
+**CrestTracker** is a World of Warcraft addon that adds a new window showing how many crests you still need to upgrade your current gear.
 
-It tracks the four new crest types introduced in *The War Within*. Currently supporting Season 2 Crests:
-- **Weathered Undermine Crest**
-- **Carved Undermine Crest**
-- **Runed Undermine Crest**
-- **Gilded Undermine Crest**
+It tracks the four new crest types introduced in *The War Within*. Currently supporting Season 3 Crests:
+- **Weathered Ethereal Crest**
+- **Carved Ethereal Crest**
+- **Runed Ethereal Crest**
+- **Gilded Ethereal Crest**
 
 ### ✨ Features
 - Adds a "Crests" tab to the Character Frame UI
@@ -23,4 +23,4 @@ It tracks the four new crest types introduced in *The War Within*. Currently sup
    World of Warcraft/_retail_/Interface/AddOns/
    ```
 2. Restart WoW or run `/reload`
-3. Open your character panel and click the **"Crests"** tab
+3. Open the Crest Tracker window by typing `/cresttracker` or by using the Minimap Button.
