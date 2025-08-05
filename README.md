@@ -11,7 +11,6 @@ It tracks the four new crest types introduced in *The War Within*. Currently sup
 - **Gilded Ethereal Crest**
 
 ### ✨ Features
-- Adds a "Crests" tab to the Character Frame UI
 - Scans your currently equipped gear
 - Calculates how many crests you still need per gear slot
 - Shows crest deficits and where you can farm more
