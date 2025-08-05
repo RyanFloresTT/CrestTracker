@@ -1,6 +1,6 @@
 # 🏆 CrestTracker
 
-![CrestTracker Screenshot](./assets/cresttracker.png)
+![CrestTracker Screenshot](./Assets/TrackerProgress.png)
 
 **CrestTracker** is a World of Warcraft addon that adds a new window showing how many crests you still need to upgrade your current gear.
 
